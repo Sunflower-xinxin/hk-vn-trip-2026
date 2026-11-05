@@ -1,4 +1,4 @@
-const CACHE_NAME = "hk-vn-travel-v1";
+const CACHE_NAME = "hk-vn-travel-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -21,9 +21,9 @@ const APP_SHELL = [
   "./site-navigation.js?v=20261104-1",
   "./apple-polish.js?v=20261104-1",
   "./pwa-register.js?v=20261105-1",
-  "./assets/icons/apple-touch-icon.png",
-  "./assets/icons/app-icon-192.png",
-  "./assets/icons/app-icon-512.png"
+  "./assets/icons/sunflower-apple-touch-icon.png",
+  "./assets/icons/sunflower-icon-192.png",
+  "./assets/icons/sunflower-icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
