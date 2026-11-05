@@ -1,0 +1,1749 @@
+{
+  "$schema": "./schemas/trip-data.schema.json",
+  "schemaVersion": "2.0-lite",
+  "config": {
+    "schemaVersion": "1.0.0",
+    "modules": {
+      "flights": true,
+      "overview": true,
+      "itinerary": true,
+      "todo": true,
+      "driving": false,
+      "ledger": true
+    },
+    "language": "zh-CN",
+    "persistence": {
+      "mode": "local"
+    }
+  },
+  "metadata": {
+    "tripId": "hong-kong-vietnam-2026",
+    "title": "香港 × 越南旅行计划",
+    "language": "zh-CN",
+    "timeZone": "Asia/Hong_Kong",
+    "assets": {
+      "routeMaps": [
+        "assets/maps/templates/template-07-compact-basin.webp",
+        "assets/maps/templates/template-04-urban.webp",
+        "assets/maps/templates/template-06-upland-basin.webp"
+      ]
+    }
+  },
+  "trip": {
+    "status": "draft",
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-29",
+    "dayCount": 9,
+    "nightCountAway": 8,
+    "countries": [
+      {
+        "code": "HK",
+        "name": "Hong Kong",
+        "nameZh": "中国香港",
+        "nameEn": "HONG KONG"
+      },
+      {
+        "code": "VN",
+        "name": "Vietnam",
+        "nameZh": "越南",
+        "nameEn": "VIETNAM"
+      }
+    ],
+    "primaryDestinationCountries": [
+      "HK",
+      "VN"
+    ],
+    "citiesAndAreas": [
+      "香港",
+      "富国岛",
+      "胡志明市"
+    ],
+    "routeSummary": "香港 → 富国岛 → 胡志明市",
+    "groupSize": null
+  },
+  "flightJourneys": [
+    {
+      "id": "journey-hk-pqc",
+      "title": "香港前往富国岛",
+      "status": "confirmed"
+    },
+    {
+      "id": "journey-pqc-sgn",
+      "title": "富国岛前往胡志明市",
+      "status": "tentative",
+      "note": "航班后续可能调整，当前先按已提供时间填写。"
+    },
+    {
+      "id": "journey-return",
+      "title": "胡志明市返回济南",
+      "status": "confirmed"
+    }
+  ],
+  "flights": [
+    {
+      "id": "flight-9g501",
+      "journeyId": "journey-hk-pqc",
+      "sequence": 1,
+      "airline": {
+        "nameZh": "太阳富国航空"
+      },
+      "flightNumber": "9G501",
+      "departure": {
+        "airportCode": "HKG",
+        "airportName": "香港国际机场 T1",
+        "city": "香港",
+        "date": "2026-11-23",
+        "time": "16:45",
+        "utcOffset": "+08:00"
+      },
+      "arrival": {
+        "airportCode": "PQC",
+        "airportName": "富国岛国际机场",
+        "city": "富国岛",
+        "date": "2026-11-23",
+        "time": "18:40",
+        "utcOffset": "+07:00"
+      }
+    },
+    {
+      "id": "flight-vu1420",
+      "journeyId": "journey-pqc-sgn",
+      "sequence": 1,
+      "airline": {
+        "nameZh": "越游航空"
+      },
+      "flightNumber": "VU1420",
+      "status": "tentative",
+      "departure": {
+        "airportCode": "PQC",
+        "airportName": "富国岛国际机场",
+        "city": "富国岛",
+        "date": "2026-11-26",
+        "time": "19:45",
+        "utcOffset": "+07:00"
+      },
+      "arrival": {
+        "airportCode": "SGN",
+        "airportName": "胡志明市新山一国际机场",
+        "city": "胡志明市",
+        "date": "2026-11-26",
+        "time": "21:00",
+        "utcOffset": "+07:00"
+      },
+      "notes": [
+        "暂定航班，后续可修改。"
+      ]
+    },
+    {
+      "id": "flight-ca408",
+      "journeyId": "journey-return",
+      "sequence": 1,
+      "airline": {
+        "nameZh": "中国国航"
+      },
+      "flightNumber": "CA408",
+      "departure": {
+        "airportCode": "SGN",
+        "airportName": "胡志明市新山一国际机场",
+        "city": "胡志明市",
+        "date": "2026-11-29",
+        "time": "23:20",
+        "utcOffset": "+07:00"
+      },
+      "arrival": {
+        "airportCode": "CKG",
+        "airportName": "重庆江北国际机场 T3",
+        "city": "重庆",
+        "date": "2026-11-30",
+        "time": "03:50",
+        "utcOffset": "+08:00"
+      }
+    },
+    {
+      "id": "flight-sc8804",
+      "journeyId": "journey-return",
+      "sequence": 2,
+      "airline": {
+        "nameZh": "山东航空"
+      },
+      "flightNumber": "SC8804",
+      "departure": {
+        "airportCode": "CKG",
+        "airportName": "重庆江北国际机场 T3",
+        "city": "重庆",
+        "date": "2026-11-30",
+        "time": "07:30",
+        "utcOffset": "+08:00"
+      },
+      "arrival": {
+        "airportCode": "TNA",
+        "airportName": "济南遥墙国际机场",
+        "city": "济南",
+        "date": "2026-11-30",
+        "time": "09:30",
+        "utcOffset": "+08:00"
+      }
+    }
+  ],
+  "accommodations": [
+    {
+      "id": "stay-yha-mei-ho-house",
+      "name": "YHA 美荷楼青年旅舍",
+      "cityOrArea": "香港",
+      "checkInDate": "2026-11-21",
+      "checkOutDate": "2026-11-23",
+      "nights": 2,
+      "room": "8 床位女生宿舍房的 1 个床位",
+      "price": {
+        "currency": "CNY",
+        "amount": 392.56
+      }
+    },
+    {
+      "id": "stay-maison-thu",
+      "name": "Maison Thu",
+      "cityOrArea": "富国岛",
+      "checkInDate": "2026-11-23",
+      "checkOutDate": "2026-11-26",
+      "nights": 3,
+      "room": "待补充",
+      "price": {
+        "currency": "CNY",
+        "amount": 1080.47
+      }
+    },
+    {
+      "id": "stay-grandma-lu-saigon-centre",
+      "name": "西贡中心卢奶奶酒店",
+      "cityOrArea": "胡志明市",
+      "checkInDate": "2026-11-26",
+      "checkOutDate": "2026-11-29",
+      "nights": 3,
+      "room": "标准间 - 带窗户",
+      "price": {
+        "currency": "CNY",
+        "amount": 297.71
+      }
+    }
+  ],
+  "groundTransport": {
+    "rentalCar": null,
+    "rentalChecklist": [],
+    "drivingNotes": [],
+    "drivingReferenceLinks": [],
+    "plannedRoadLegs": [],
+    "publicTransitAndRail": [
+      {
+        "id": "rail-g897",
+        "type": "train",
+        "serviceNumber": "G897",
+        "departure": {
+          "station": "北京西站",
+          "date": "2026-11-20",
+          "time": "21:01",
+          "utcOffset": "+08:00"
+        },
+        "arrival": {
+          "station": "深圳北站",
+          "date": "2026-11-21",
+          "time": "06:57",
+          "utcOffset": "+08:00"
+        },
+        "duration": "9 小时 56 分钟"
+      }
+    ]
+  },
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-11-21",
+      "title": "抵达香港 · 城市漫游",
+      "locations": [
+        "深圳北站",
+        "福田口岸",
+        "YHA 美荷楼青年旅舍",
+        "香港公园北门",
+        "湾仔",
+        "维多利亚港",
+        "尖沙咀",
+        "中环"
+      ],
+      "schedule": [
+        {
+          "id": "d1-train-arrival",
+          "time": "06:57",
+          "type": "train",
+          "text": "G897 抵达深圳北站",
+          "placeId": "shenzhen-north"
+        },
+        {
+          "id": "d1-metro-to-futian",
+          "time": "07:12",
+          "type": "transfer",
+          "text": "乘地铁前往福田口岸，约 29 分钟，预计 07:41 到达",
+          "placeIds": [
+            "shenzhen-north",
+            "futian-checkpoint"
+          ]
+        },
+        {
+          "id": "d1-futian-checkpoint",
+          "time": "07:41",
+          "type": "transfer",
+          "text": "福田口岸通关，预留约 1 小时",
+          "placeId": "futian-checkpoint"
+        },
+        {
+          "id": "d1-transit-to-yha",
+          "time": "08:41",
+          "type": "transfer",
+          "text": "乘轨道交通前往 YHA 美荷楼青年旅舍，约 1 小时 19 分钟",
+          "placeIds": [
+            "futian-checkpoint",
+            "yha-mei-ho-house"
+          ]
+        },
+        {
+          "id": "d1-yha",
+          "time": "10:00",
+          "type": "check-in",
+          "text": "抵达 YHA 美荷楼青年旅舍，寄存行李 / 办理入住，预留约 1 小时",
+          "placeId": "yha-mei-ho-house"
+        },
+        {
+          "id": "d1-transit-yha-park",
+          "time": "11:00",
+          "type": "transfer",
+          "text": "乘地铁前往香港公园北门，约 36 分钟",
+          "placeIds": [
+            "yha-mei-ho-house",
+            "hong-kong-park-north"
+          ]
+        },
+        {
+          "id": "d1-hong-kong-park",
+          "time": "11:36",
+          "type": "attraction",
+          "text": "香港公园北门，计划停留约 1 小时",
+          "placeId": "hong-kong-park-north"
+        },
+        {
+          "id": "d1-transit-park-wanchai",
+          "time": "待确认",
+          "type": "transfer",
+          "text": "前往湾仔；可在 Google Maps 中查看步行、地铁或公交方案",
+          "placeIds": [
+            "hong-kong-park-north",
+            "wan-chai-station"
+          ]
+        },
+        {
+          "id": "d1-wan-chai",
+          "time": "待确认",
+          "type": "attraction",
+          "text": "湾仔，计划停留约 2 小时",
+          "placeId": "wan-chai-station"
+        },
+        {
+          "id": "d1-transit-wanchai-harbour",
+          "time": "待确认",
+          "type": "transfer",
+          "text": "前往维多利亚港；交通方式与时长待选择",
+          "placeIds": [
+            "wan-chai-station",
+            "victoria-harbour"
+          ]
+        },
+        {
+          "id": "d1-victoria-harbour",
+          "time": "待确认",
+          "type": "attraction",
+          "text": "维多利亚港，计划停留约 1 小时",
+          "placeId": "victoria-harbour"
+        },
+        {
+          "id": "d1-transit-harbour-tst",
+          "time": "待确认",
+          "type": "transfer",
+          "text": "前往尖沙咀；交通方式与时长待选择",
+          "placeIds": [
+            "victoria-harbour",
+            "tsim-sha-tsui-station"
+          ]
+        },
+        {
+          "id": "d1-tsim-sha-tsui",
+          "time": "待确认",
+          "type": "attraction",
+          "text": "尖沙咀，计划停留约 1 小时",
+          "placeId": "tsim-sha-tsui-station"
+        },
+        {
+          "id": "d1-transit-tst-central",
+          "time": "待确认",
+          "type": "ferry",
+          "text": "前往中环；可在 Google Maps 中查看渡轮、地铁或其他方案",
+          "placeIds": [
+            "tsim-sha-tsui-station",
+            "central-station"
+          ]
+        },
+        {
+          "id": "d1-central",
+          "time": "待确认",
+          "type": "attraction",
+          "text": "中环，计划停留约 1 小时",
+          "placeId": "central-station"
+        },
+        {
+          "id": "d1-return-yha",
+          "time": "待确认",
+          "type": "return",
+          "text": "返回 YHA 美荷楼青年旅舍，交通方式与时长待选择",
+          "placeIds": [
+            "central-station",
+            "yha-mei-ho-house"
+          ]
+        }
+      ],
+      "notes": [
+        "后半程的准确出发时间和交通时长待补充。"
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-11-22",
+      "title": "香港自由行程",
+      "locations": [
+        "待补充"
+      ],
+      "schedule": [
+        {
+          "id": "d2-placeholder",
+          "time": "待补充",
+          "type": "note",
+          "text": "景点、时间和地点顺序待补充"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-11-23",
+      "title": "香港 → 富国岛",
+      "locations": [
+        "YHA 美荷楼青年旅舍",
+        "香港国际机场",
+        "富国岛国际机场",
+        "Maison Thu"
+      ],
+      "schedule": [
+        {
+          "id": "d3-yha-checkout",
+          "time": "待确认",
+          "type": "check-out",
+          "text": "YHA 美荷楼青年旅舍退房",
+          "placeId": "yha-mei-ho-house"
+        },
+        {
+          "id": "d3-flight-9g501",
+          "time": "16:45",
+          "type": "flight",
+          "text": "9G501 从香港国际机场 T1 起飞，18:40 抵达富国岛国际机场"
+        },
+        {
+          "id": "d3-pqc-transfer",
+          "time": "待确认",
+          "type": "transfer",
+          "text": "从富国岛国际机场前往 Maison Thu，交通方式与时长待补充",
+          "placeIds": [
+            "phu-quoc-airport",
+            "maison-thu"
+          ]
+        },
+        {
+          "id": "d3-maison-checkin",
+          "time": "待确认",
+          "type": "check-in",
+          "text": "Maison Thu 办理入住",
+          "placeId": "maison-thu"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026-11-24",
+      "title": "富国岛自由行程",
+      "locations": [
+        "待补充"
+      ],
+      "schedule": [
+        {
+          "id": "d4-placeholder",
+          "time": "待补充",
+          "type": "note",
+          "text": "景点、时间和地点顺序待补充"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2026-11-25",
+      "title": "富国岛自由行程",
+      "locations": [
+        "待补充"
+      ],
+      "schedule": [
+        {
+          "id": "d5-placeholder",
+          "time": "待补充",
+          "type": "note",
+          "text": "景点、时间和地点顺序待补充"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2026-11-26",
+      "title": "富国岛 → 胡志明市",
+      "locations": [
+        "Maison Thu",
+        "富国岛国际机场",
+        "胡志明市新山一国际机场",
+        "西贡中心卢奶奶酒店"
+      ],
+      "schedule": [
+        {
+          "id": "d6-maison-checkout",
+          "time": "待确认",
+          "type": "check-out",
+          "text": "Maison Thu 退房",
+          "placeId": "maison-thu"
+        },
+        {
+          "id": "d6-pqc-transfer",
+          "time": "待确认",
+          "type": "transfer",
+          "text": "从 Maison Thu 前往富国岛国际机场，交通方式与时长待补充",
+          "placeIds": [
+            "maison-thu",
+            "phu-quoc-airport"
+          ]
+        },
+        {
+          "id": "d6-flight-vu1420",
+          "time": "19:45",
+          "type": "flight",
+          "text": "VU1420 从富国岛起飞，21:00 抵达胡志明市（暂定，后续可修改）"
+        },
+        {
+          "id": "d6-sgn-transfer",
+          "time": "待确认",
+          "type": "transfer",
+          "text": "从新山一国际机场前往西贡中心卢奶奶酒店，交通时长待补充",
+          "placeIds": [
+            "tan-son-nhat-airport",
+            "grandma-lu-saigon-centre"
+          ]
+        },
+        {
+          "id": "d6-saigon-checkin",
+          "time": "待确认",
+          "type": "check-in",
+          "text": "西贡中心卢奶奶酒店办理入住",
+          "placeId": "grandma-lu-saigon-centre"
+        }
+      ],
+      "notes": [
+        "VU1420 当前按 19:45 起飞、21:00 降落填写，后续可修改。"
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2026-11-27",
+      "title": "胡志明市自由行程",
+      "locations": [
+        "待补充"
+      ],
+      "schedule": [
+        {
+          "id": "d7-placeholder",
+          "time": "待补充",
+          "type": "note",
+          "text": "景点、时间和地点顺序待补充"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2026-11-28",
+      "title": "胡志明市自由行程",
+      "locations": [
+        "待补充"
+      ],
+      "schedule": [
+        {
+          "id": "d8-placeholder",
+          "time": "待补充",
+          "type": "note",
+          "text": "景点、时间和地点顺序待补充"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2026-11-29",
+      "title": "胡志明市返程",
+      "locations": [
+        "西贡中心卢奶奶酒店",
+        "胡志明市新山一国际机场"
+      ],
+      "schedule": [
+        {
+          "id": "d9-saigon-checkout",
+          "time": "待确认",
+          "type": "check-out",
+          "text": "西贡中心卢奶奶酒店退房",
+          "placeId": "grandma-lu-saigon-centre"
+        },
+        {
+          "id": "d9-sgn-transfer",
+          "time": "待确认",
+          "type": "transfer",
+          "text": "前往胡志明市新山一国际机场，交通时长待补充",
+          "placeIds": [
+            "grandma-lu-saigon-centre",
+            "tan-son-nhat-airport"
+          ]
+        },
+        {
+          "id": "d9-flight-ca408",
+          "time": "23:20",
+          "type": "flight",
+          "text": "CA408 从胡志明市起飞，11 月 30 日 03:50 抵达重庆江北 T3"
+        },
+        {
+          "id": "d9-flight-sc8804",
+          "time": "11月30日 07:30",
+          "type": "flight",
+          "text": "SC8804 从重庆江北 T3 起飞，09:30 抵达济南遥墙"
+        }
+      ]
+    }
+  ],
+  "places": [
+    {
+      "id": "shenzhen-north",
+      "nameZh": "深圳北站",
+      "cityOrArea": "深圳",
+      "navigation": {
+        "query": "深圳北站"
+      }
+    },
+    {
+      "id": "futian-checkpoint",
+      "nameZh": "福田口岸",
+      "cityOrArea": "深圳",
+      "navigation": {
+        "query": "福田口岸 深圳"
+      }
+    },
+    {
+      "id": "yha-mei-ho-house",
+      "nameZh": "YHA 美荷楼青年旅舍",
+      "cityOrArea": "香港",
+      "navigation": {
+        "query": "YHA Mei Ho House Youth Hostel Hong Kong"
+      }
+    },
+    {
+      "id": "hong-kong-park-north",
+      "nameZh": "香港公园北门",
+      "cityOrArea": "香港",
+      "navigation": {
+        "query": "Hong Kong Park North Gate"
+      }
+    },
+    {
+      "id": "wan-chai-station",
+      "nameZh": "湾仔地铁站",
+      "cityOrArea": "香港",
+      "navigation": {
+        "query": "Wan Chai MTR Station Hong Kong"
+      }
+    },
+    {
+      "id": "victoria-harbour",
+      "nameZh": "维多利亚港",
+      "cityOrArea": "香港",
+      "navigation": {
+        "query": "Victoria Harbour Hong Kong"
+      }
+    },
+    {
+      "id": "tsim-sha-tsui-station",
+      "nameZh": "尖沙咀地铁站",
+      "cityOrArea": "香港",
+      "navigation": {
+        "query": "Tsim Sha Tsui MTR Station Hong Kong"
+      }
+    },
+    {
+      "id": "central-station",
+      "nameZh": "中环地铁站",
+      "cityOrArea": "香港",
+      "navigation": {
+        "query": "Central MTR Station Hong Kong"
+      }
+    },
+    {
+      "id": "phu-quoc-airport",
+      "nameZh": "富国岛国际机场",
+      "cityOrArea": "富国岛",
+      "navigation": {
+        "query": "Phu Quoc International Airport"
+      }
+    },
+    {
+      "id": "maison-thu",
+      "nameZh": "Maison Thu",
+      "cityOrArea": "富国岛",
+      "navigation": {
+        "query": "Maison Thu Phu Quoc"
+      }
+    },
+    {
+      "id": "tan-son-nhat-airport",
+      "nameZh": "新山一国际机场",
+      "cityOrArea": "胡志明市",
+      "navigation": {
+        "query": "Tan Son Nhat International Airport"
+      }
+    },
+    {
+      "id": "grandma-lu-saigon-centre",
+      "nameZh": "西贡中心卢奶奶酒店",
+      "cityOrArea": "胡志明市",
+      "navigation": {
+        "query": "Grandma Lu Saigon Centre Ho Chi Minh City"
+      }
+    }
+  ],
+  "restaurants": [],
+  "bookingsAndTickets": [],
+  "ticketPlanning": {
+    "statusStorage": "local",
+    "statusStorageNote": "门票状态默认只保存在当前浏览器。",
+    "items": []
+  },
+  "preTrip": {
+    "packingItems": [],
+    "preparationsExplicitlyMentioned": [],
+    "missingNote": "当前无预设 To Do，可在网页中自行添加。"
+  },
+  "mapLinks": {
+    "providedGoogleMapsLinks": [],
+    "note": "行程地点可打开 Google Maps；未确定的交通时长可在地图中继续选择和补充。",
+    "cityLevelNavigationDisabled": false,
+    "navigationPolicy": {
+      "noNavigationTypes": [
+        "flight",
+        "note",
+        "rest"
+      ],
+      "selfNavigationTypes": [
+        "drive",
+        "return",
+        "transfer",
+        "check-in",
+        "check-out",
+        "restaurant",
+        "attraction",
+        "walk",
+        "hike",
+        "ferry",
+        "train"
+      ]
+    },
+    "navigationPlaces": []
+  },
+  "issuesAndUncertainties": [
+    {
+      "id": "issue-vu1420-tentative",
+      "status": "pending",
+      "text": "VU1420 当前使用 2026-11-26 19:45-21:00，后续可能更改。"
+    },
+    {
+      "id": "issue-open-days",
+      "status": "pending",
+      "text": "11 月 22 日及 11 月 24-28 日的详细景点、时间与顺序待补充。"
+    }
+  ],
+  "map": {
+    "schemaVersion": "1.0-lite",
+    "mapMode": "template-auto",
+    "templateId": "auto",
+    "defaultRegionId": "hong-kong",
+    "regions": [
+      {
+        "id": "hong-kong",
+        "label": "香港",
+        "countryCode": "HK"
+      },
+      {
+        "id": "phu-quoc",
+        "label": "富国岛",
+        "countryCode": "VN"
+      },
+      {
+        "id": "ho-chi-minh-city",
+        "label": "胡志明市",
+        "countryCode": "VN"
+      }
+    ],
+    "disclaimer": "本图仅表达地点的相对方位与路线顺序，不代表真实比例或精确地理边界。",
+    "places": [
+      {
+        "id": "yha-mei-ho-house",
+        "name": "YHA Mei Ho House",
+        "nameZh": "YHA 美荷楼青年旅舍",
+        "countryCode": "HK",
+        "mapRegionId": "hong-kong",
+        "query": "YHA Mei Ho House Youth Hostel Hong Kong",
+        "geo": {
+          "lat": 22.3342,
+          "lng": 114.1664
+        }
+      },
+      {
+        "id": "hong-kong-park-north",
+        "name": "Hong Kong Park North Gate",
+        "nameZh": "香港公园北门",
+        "countryCode": "HK",
+        "mapRegionId": "hong-kong",
+        "query": "Hong Kong Park North Gate",
+        "geo": {
+          "lat": 22.2796,
+          "lng": 114.1623
+        }
+      },
+      {
+        "id": "wan-chai-station",
+        "name": "Wan Chai",
+        "nameZh": "湾仔地铁站",
+        "countryCode": "HK",
+        "mapRegionId": "hong-kong",
+        "query": "Wan Chai MTR Station Hong Kong",
+        "geo": {
+          "lat": 22.2775,
+          "lng": 114.1732
+        }
+      },
+      {
+        "id": "victoria-harbour",
+        "name": "Victoria Harbour",
+        "nameZh": "维多利亚港",
+        "countryCode": "HK",
+        "mapRegionId": "hong-kong",
+        "query": "Victoria Harbour Hong Kong",
+        "geo": {
+          "lat": 22.2932,
+          "lng": 114.1732
+        }
+      },
+      {
+        "id": "tsim-sha-tsui-station",
+        "name": "Tsim Sha Tsui",
+        "nameZh": "尖沙咀地铁站",
+        "countryCode": "HK",
+        "mapRegionId": "hong-kong",
+        "query": "Tsim Sha Tsui MTR Station Hong Kong",
+        "geo": {
+          "lat": 22.2977,
+          "lng": 114.1722
+        }
+      },
+      {
+        "id": "central-station",
+        "name": "Central",
+        "nameZh": "中环地铁站",
+        "countryCode": "HK",
+        "mapRegionId": "hong-kong",
+        "query": "Central MTR Station Hong Kong",
+        "geo": {
+          "lat": 22.2819,
+          "lng": 114.1588
+        }
+      },
+      {
+        "id": "phu-quoc-airport",
+        "name": "Phu Quoc International Airport",
+        "nameZh": "富国岛国际机场",
+        "countryCode": "VN",
+        "mapRegionId": "phu-quoc",
+        "query": "Phu Quoc International Airport",
+        "geo": {
+          "lat": 10.1698,
+          "lng": 103.9931
+        }
+      },
+      {
+        "id": "maison-thu",
+        "name": "Maison Thu",
+        "nameZh": "Maison Thu",
+        "countryCode": "VN",
+        "mapRegionId": "phu-quoc",
+        "query": "Maison Thu Phu Quoc"
+      },
+      {
+        "id": "tan-son-nhat-airport",
+        "name": "Tan Son Nhat International Airport",
+        "nameZh": "新山一国际机场",
+        "countryCode": "VN",
+        "mapRegionId": "ho-chi-minh-city",
+        "query": "Tan Son Nhat International Airport",
+        "geo": {
+          "lat": 10.8188,
+          "lng": 106.6519
+        }
+      },
+      {
+        "id": "grandma-lu-saigon-centre",
+        "name": "Grandma Lu Saigon Centre",
+        "nameZh": "西贡中心卢奶奶酒店",
+        "countryCode": "VN",
+        "mapRegionId": "ho-chi-minh-city",
+        "query": "Grandma Lu Saigon Centre Ho Chi Minh City"
+      }
+    ],
+    "routes": [
+      {
+        "day": 1,
+        "placeIds": [
+          "yha-mei-ho-house",
+          "hong-kong-park-north",
+          "wan-chai-station",
+          "victoria-harbour",
+          "tsim-sha-tsui-station",
+          "central-station",
+          "yha-mei-ho-house"
+        ],
+        "scheduleItems": [
+          [
+            "d1-transit-yha-park"
+          ],
+          [
+            "d1-transit-park-wanchai"
+          ],
+          [
+            "d1-transit-wanchai-harbour"
+          ],
+          [
+            "d1-transit-harbour-tst"
+          ],
+          [
+            "d1-transit-tst-central"
+          ],
+          [
+            "d1-return-yha"
+          ]
+        ]
+      },
+      {
+        "day": 3,
+        "placeIds": [
+          "phu-quoc-airport",
+          "maison-thu"
+        ],
+        "scheduleItems": [
+          [
+            "d3-pqc-transfer"
+          ]
+        ]
+      },
+      {
+        "day": 6,
+        "placeIds": [
+          "maison-thu",
+          "phu-quoc-airport"
+        ],
+        "scheduleItems": [
+          [
+            "d6-pqc-transfer"
+          ]
+        ]
+      },
+      {
+        "day": 6,
+        "placeIds": [
+          "tan-son-nhat-airport",
+          "grandma-lu-saigon-centre"
+        ],
+        "scheduleItems": [
+          [
+            "d6-sgn-transfer"
+          ]
+        ]
+      },
+      {
+        "day": 9,
+        "placeIds": [
+          "grandma-lu-saigon-centre",
+          "tan-son-nhat-airport"
+        ],
+        "scheduleItems": [
+          [
+            "d9-sgn-transfer"
+          ]
+        ]
+      }
+    ],
+    "dailyRoutes": [
+      {
+        "day": 1,
+        "placeIds": [
+          "yha-mei-ho-house",
+          "hong-kong-park-north",
+          "wan-chai-station",
+          "victoria-harbour",
+          "tsim-sha-tsui-station",
+          "central-station",
+          "yha-mei-ho-house"
+        ],
+        "scheduleItems": [
+          [
+            "d1-transit-yha-park"
+          ],
+          [
+            "d1-transit-park-wanchai"
+          ],
+          [
+            "d1-transit-wanchai-harbour"
+          ],
+          [
+            "d1-transit-harbour-tst"
+          ],
+          [
+            "d1-transit-tst-central"
+          ],
+          [
+            "d1-return-yha"
+          ]
+        ]
+      },
+      {
+        "day": 3,
+        "placeIds": [
+          "phu-quoc-airport",
+          "maison-thu"
+        ],
+        "scheduleItems": [
+          [
+            "d3-pqc-transfer"
+          ]
+        ]
+      },
+      {
+        "day": 6,
+        "placeIds": [
+          "maison-thu",
+          "phu-quoc-airport"
+        ],
+        "scheduleItems": [
+          [
+            "d6-pqc-transfer"
+          ]
+        ]
+      },
+      {
+        "day": 6,
+        "placeIds": [
+          "tan-son-nhat-airport",
+          "grandma-lu-saigon-centre"
+        ],
+        "scheduleItems": [
+          [
+            "d6-sgn-transfer"
+          ]
+        ]
+      },
+      {
+        "day": 9,
+        "placeIds": [
+          "grandma-lu-saigon-centre",
+          "tan-son-nhat-airport"
+        ],
+        "scheduleItems": [
+          [
+            "d9-sgn-transfer"
+          ]
+        ]
+      }
+    ]
+  },
+  "routeMap": {
+    "defaultRegionId": "hong-kong",
+    "regions": [
+      {
+        "id": "hong-kong",
+        "label": "香港",
+        "countryCode": "HK",
+        "scope": "template-schematic",
+        "mapMode": "frozen-template",
+        "templateId": "compact-basin",
+        "mapModeReason": "dense-place-cluster",
+        "mapModeMetrics": {
+          "placeCount": 6,
+          "geoPlaceCount": 6,
+          "widthKm": 1.48,
+          "heightKm": 6.29,
+          "spanKm": 6.34,
+          "averageNearestKm": 1.19,
+          "components": 1,
+          "largestLegKm": 6.09,
+          "jumpRatio": 2.73
+        },
+        "days": [
+          1
+        ],
+        "canvas": {
+          "width": 1448,
+          "height": 1086
+        },
+        "projection": {
+          "type": "relative-schematic",
+          "bounds": null
+        },
+        "baseImage": "assets/maps/templates/template-07-compact-basin.webp",
+        "title": "香港 · 旅行路线",
+        "ariaLabel": "香港模板化旅行路线示意图，共1天",
+        "disclaimer": "本图仅表达地点的相对方位与路线顺序，不代表真实比例或精确地理边界。",
+        "heading": {
+          "text": "香港",
+          "x": 33,
+          "y": 105,
+          "size": 40
+        },
+        "legend": {
+          "x": 35,
+          "y": 168,
+          "gap": 43
+        },
+        "annotations": [],
+        "routes": [
+          {
+            "day": 1,
+            "color": "#397dc1",
+            "placeIds": [
+              "yha-mei-ho-house",
+              "hong-kong-park-north",
+              "wan-chai-station",
+              "victoria-harbour",
+              "tsim-sha-tsui-station",
+              "central-station",
+              "yha-mei-ho-house"
+            ],
+            "paths": [
+              "M723.48 258.6 C744.6 443.7 735.7 627.3 697.34 798.6 C732.2 805.9 766.2 803.2 797.44 790.61 C782.4 750.9 779.2 710.3 788.21 671.16 C791.1 636.2 784.4 603.3 768.3 574.3 C737.3 638.7 691.3 689.6 633.06 723.92 C693.3 571.4 724.0 413.2 723.48 258.6"
+            ],
+            "overviewPaths": [
+              "M723.48 258.6 C744.6 443.7 735.7 627.3 697.34 798.6 C732.2 805.9 766.2 803.2 797.44 790.61 C782.4 750.9 779.2 710.3 788.21 671.16 C791.1 636.2 784.4 603.3 768.3 574.3 C737.3 638.7 691.3 689.6 633.06 723.92 C693.3 571.4 724.0 413.2 723.48 258.6"
+            ]
+          }
+        ],
+        "places": [
+          {
+            "id": "yha-mei-ho-house",
+            "x": 723.48,
+            "y": 258.6,
+            "color": "#397dc1",
+            "tx": 755.48,
+            "ty": 226.6,
+            "size": 24,
+            "anchor": "start",
+            "lines": [
+              "YHA Mei Ho House /",
+              "YHA 美荷楼青年旅舍"
+            ],
+            "query": "YHA Mei Ho House Youth Hostel Hong Kong",
+            "geo": {
+              "lat": 22.3342,
+              "lng": 114.1664
+            },
+            "days": [
+              1
+            ]
+          },
+          {
+            "id": "hong-kong-park-north",
+            "x": 697.34,
+            "y": 798.6,
+            "color": "#397dc1",
+            "tx": 665.34,
+            "ty": 848.6,
+            "size": 24,
+            "anchor": "end",
+            "lines": [
+              "Hong Kong Park North Gate /",
+              "香港公园北门"
+            ],
+            "query": "Hong Kong Park North Gate",
+            "geo": {
+              "lat": 22.2796,
+              "lng": 114.1623
+            },
+            "days": [
+              1
+            ]
+          },
+          {
+            "id": "wan-chai-station",
+            "x": 797.44,
+            "y": 790.61,
+            "color": "#397dc1",
+            "tx": 875.44,
+            "ty": 728.61,
+            "size": 24,
+            "anchor": "start",
+            "lines": [
+              "Wan Chai /",
+              "湾仔地铁站"
+            ],
+            "query": "Wan Chai MTR Station Hong Kong",
+            "geo": {
+              "lat": 22.2775,
+              "lng": 114.1732
+            },
+            "days": [
+              1
+            ]
+          },
+          {
+            "id": "victoria-harbour",
+            "x": 788.21,
+            "y": 671.16,
+            "color": "#397dc1",
+            "tx": 710.21,
+            "ty": 609.16,
+            "size": 24,
+            "anchor": "end",
+            "lines": [
+              "Victoria Harbour /",
+              "维多利亚港"
+            ],
+            "query": "Victoria Harbour Hong Kong",
+            "geo": {
+              "lat": 22.2932,
+              "lng": 114.1732
+            },
+            "days": [
+              1
+            ]
+          },
+          {
+            "id": "tsim-sha-tsui-station",
+            "x": 768.3,
+            "y": 574.3,
+            "color": "#397dc1",
+            "tx": 906.3,
+            "ty": 486.3,
+            "size": 24,
+            "anchor": "start",
+            "lines": [
+              "Tsim Sha Tsui /",
+              "尖沙咀地铁站"
+            ],
+            "query": "Tsim Sha Tsui MTR Station Hong Kong",
+            "geo": {
+              "lat": 22.2977,
+              "lng": 114.1722
+            },
+            "days": [
+              1
+            ]
+          },
+          {
+            "id": "central-station",
+            "x": 633.06,
+            "y": 723.92,
+            "color": "#397dc1",
+            "tx": 601.06,
+            "ty": 691.92,
+            "size": 24,
+            "anchor": "end",
+            "lines": [
+              "Central /",
+              "中环地铁站"
+            ],
+            "query": "Central MTR Station Hong Kong",
+            "geo": {
+              "lat": 22.2819,
+              "lng": 114.1588
+            },
+            "days": [
+              1
+            ]
+          }
+        ],
+        "overviewPlaceIds": [
+          "yha-mei-ho-house",
+          "hong-kong-park-north",
+          "wan-chai-station",
+          "victoria-harbour",
+          "tsim-sha-tsui-station",
+          "central-station"
+        ],
+        "dailyLayouts": {
+          "1": {
+            "places": [
+              "yha-mei-ho-house",
+              "hong-kong-park-north",
+              "wan-chai-station",
+              "victoria-harbour",
+              "tsim-sha-tsui-station",
+              "central-station"
+            ],
+            "labels": {
+              "yha-mei-ho-house": {
+                "x": 755.48,
+                "y": 226.6,
+                "anchor": "start"
+              },
+              "hong-kong-park-north": {
+                "x": 665.34,
+                "y": 848.6,
+                "anchor": "end"
+              },
+              "wan-chai-station": {
+                "x": 875.44,
+                "y": 728.61,
+                "anchor": "start"
+              },
+              "victoria-harbour": {
+                "x": 710.21,
+                "y": 609.16,
+                "anchor": "end"
+              },
+              "tsim-sha-tsui-station": {
+                "x": 906.3,
+                "y": 486.3,
+                "anchor": "start"
+              },
+              "central-station": {
+                "x": 601.06,
+                "y": 691.92,
+                "anchor": "end"
+              }
+            },
+            "transport": [
+              {
+                "items": [
+                  "d1-transit-yha-park"
+                ],
+                "x": 710.41,
+                "y": 528.6
+              },
+              {
+                "items": [
+                  "d1-transit-park-wanchai"
+                ],
+                "x": 747.39,
+                "y": 794.61
+              },
+              {
+                "items": [
+                  "d1-transit-wanchai-harbour"
+                ],
+                "x": 792.83,
+                "y": 730.88
+              },
+              {
+                "items": [
+                  "d1-transit-harbour-tst"
+                ],
+                "x": 778.25,
+                "y": 622.73
+              },
+              {
+                "items": [
+                  "d1-transit-tst-central"
+                ],
+                "x": 700.68,
+                "y": 649.11
+              },
+              {
+                "items": [
+                  "d1-return-yha"
+                ],
+                "x": 678.27,
+                "y": 491.26
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "phu-quoc",
+        "label": "富国岛",
+        "countryCode": "VN",
+        "scope": "template-schematic",
+        "mapMode": "frozen-template",
+        "templateId": "urban-radial",
+        "mapModeReason": "compact-city-route",
+        "mapModeMetrics": {
+          "placeCount": 2,
+          "geoPlaceCount": 1,
+          "widthKm": 0,
+          "heightKm": 0,
+          "spanKm": 0,
+          "averageNearestKm": 0,
+          "components": 1,
+          "largestLegKm": 0,
+          "jumpRatio": 0
+        },
+        "days": [
+          3,
+          6
+        ],
+        "canvas": {
+          "width": 1448,
+          "height": 1086
+        },
+        "projection": {
+          "type": "relative-schematic",
+          "bounds": null
+        },
+        "baseImage": "assets/maps/templates/template-04-urban.webp",
+        "title": "富国岛 · 旅行路线",
+        "ariaLabel": "富国岛模板化旅行路线示意图，共2天",
+        "disclaimer": "本图仅表达地点的相对方位与路线顺序，不代表真实比例或精确地理边界。",
+        "heading": {
+          "text": "富国岛",
+          "x": 33,
+          "y": 105,
+          "size": 40
+        },
+        "legend": {
+          "x": 35,
+          "y": 168,
+          "gap": 43
+        },
+        "annotations": [],
+        "routes": [
+          {
+            "day": 3,
+            "color": "#618344",
+            "placeIds": [
+              "phu-quoc-airport",
+              "maison-thu"
+            ],
+            "paths": [
+              "M444 527.5 C716.7 497.5 989.4 497.5 1246 527.5"
+            ],
+            "overviewPaths": [
+              "M444 527.5 C716.7 497.5 989.4 497.5 1246 527.5"
+            ]
+          },
+          {
+            "day": 6,
+            "color": "#df6185",
+            "placeIds": [
+              "maison-thu",
+              "phu-quoc-airport"
+            ],
+            "paths": [
+              "M1246 527.5 C973.3 497.5 700.6 497.5 444 527.5"
+            ],
+            "overviewPaths": [
+              "M1246 527.5 C973.3 497.5 700.6 497.5 444 527.5"
+            ]
+          }
+        ],
+        "places": [
+          {
+            "id": "phu-quoc-airport",
+            "x": 444,
+            "y": 527.5,
+            "color": "#618344",
+            "tx": 476,
+            "ty": 495.5,
+            "size": 24,
+            "anchor": "start",
+            "lines": [
+              "Phu Quoc International Airport /",
+              "富国岛国际机场"
+            ],
+            "query": "Phu Quoc International Airport",
+            "geo": {
+              "lat": 10.1698,
+              "lng": 103.9931
+            },
+            "days": [
+              3,
+              6
+            ]
+          },
+          {
+            "id": "maison-thu",
+            "x": 1246,
+            "y": 527.5,
+            "color": "#618344",
+            "tx": 1214,
+            "ty": 495.5,
+            "size": 24,
+            "anchor": "end",
+            "lines": [
+              "Maison Thu"
+            ],
+            "query": "Maison Thu Phu Quoc",
+            "days": [
+              3,
+              6
+            ]
+          }
+        ],
+        "overviewPlaceIds": [
+          "phu-quoc-airport",
+          "maison-thu"
+        ],
+        "dailyLayouts": {
+          "3": {
+            "places": [
+              "phu-quoc-airport",
+              "maison-thu"
+            ],
+            "labels": {
+              "phu-quoc-airport": {
+                "x": 476,
+                "y": 495.5,
+                "anchor": "start"
+              },
+              "maison-thu": {
+                "x": 1214,
+                "y": 495.5,
+                "anchor": "end"
+              }
+            },
+            "transport": [
+              {
+                "items": [
+                  "d3-pqc-transfer"
+                ],
+                "x": 845,
+                "y": 527.5
+              }
+            ]
+          },
+          "6": {
+            "places": [
+              "maison-thu",
+              "phu-quoc-airport"
+            ],
+            "labels": {
+              "maison-thu": {
+                "x": 1214,
+                "y": 495.5,
+                "anchor": "end"
+              },
+              "phu-quoc-airport": {
+                "x": 476,
+                "y": 495.5,
+                "anchor": "start"
+              }
+            },
+            "transport": [
+              {
+                "items": [
+                  "d6-pqc-transfer"
+                ],
+                "x": 845,
+                "y": 527.5
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "ho-chi-minh-city",
+        "label": "胡志明市",
+        "countryCode": "VN",
+        "scope": "template-schematic",
+        "mapMode": "frozen-template",
+        "templateId": "upland-basin",
+        "mapModeReason": "compact-city-route",
+        "mapModeMetrics": {
+          "placeCount": 2,
+          "geoPlaceCount": 1,
+          "widthKm": 0,
+          "heightKm": 0,
+          "spanKm": 0,
+          "averageNearestKm": 0,
+          "components": 1,
+          "largestLegKm": 0,
+          "jumpRatio": 0
+        },
+        "days": [
+          6,
+          9
+        ],
+        "canvas": {
+          "width": 1448,
+          "height": 1086
+        },
+        "projection": {
+          "type": "relative-schematic",
+          "bounds": null
+        },
+        "baseImage": "assets/maps/templates/template-06-upland-basin.webp",
+        "title": "胡志明市 · 旅行路线",
+        "ariaLabel": "胡志明市模板化旅行路线示意图，共2天",
+        "disclaimer": "本图仅表达地点的相对方位与路线顺序，不代表真实比例或精确地理边界。",
+        "heading": {
+          "text": "胡志明市",
+          "x": 33,
+          "y": 105,
+          "size": 40
+        },
+        "legend": {
+          "x": 35,
+          "y": 168,
+          "gap": 43
+        },
+        "annotations": [],
+        "routes": [
+          {
+            "day": 6,
+            "color": "#df6185",
+            "placeIds": [
+              "tan-son-nhat-airport",
+              "grandma-lu-saigon-centre"
+            ],
+            "paths": [
+              "M464 520 C726.5 550.0 989.0 550.0 1236 520"
+            ],
+            "overviewPaths": [
+              "M464 520 C726.5 550.0 989.0 550.0 1236 520"
+            ]
+          },
+          {
+            "day": 9,
+            "color": "#618344",
+            "placeIds": [
+              "grandma-lu-saigon-centre",
+              "tan-son-nhat-airport"
+            ],
+            "paths": [
+              "M1236 520 C973.5 550.0 711.0 550.0 464 520"
+            ],
+            "overviewPaths": [
+              "M1236 520 C973.5 550.0 711.0 550.0 464 520"
+            ]
+          }
+        ],
+        "places": [
+          {
+            "id": "tan-son-nhat-airport",
+            "x": 464,
+            "y": 520,
+            "color": "#df6185",
+            "tx": 496,
+            "ty": 488,
+            "size": 24,
+            "anchor": "start",
+            "lines": [
+              "Tan Son Nhat International Airport /",
+              "新山一国际机场"
+            ],
+            "query": "Tan Son Nhat International Airport",
+            "geo": {
+              "lat": 10.8188,
+              "lng": 106.6519
+            },
+            "days": [
+              6,
+              9
+            ]
+          },
+          {
+            "id": "grandma-lu-saigon-centre",
+            "x": 1236,
+            "y": 520,
+            "color": "#df6185",
+            "tx": 1204,
+            "ty": 488,
+            "size": 24,
+            "anchor": "end",
+            "lines": [
+              "Grandma Lu Saigon Centre /",
+              "西贡中心卢奶奶酒店"
+            ],
+            "query": "Grandma Lu Saigon Centre Ho Chi Minh City",
+            "days": [
+              6,
+              9
+            ]
+          }
+        ],
+        "overviewPlaceIds": [
+          "tan-son-nhat-airport",
+          "grandma-lu-saigon-centre"
+        ],
+        "dailyLayouts": {
+          "6": {
+            "places": [
+              "tan-son-nhat-airport",
+              "grandma-lu-saigon-centre"
+            ],
+            "labels": {
+              "tan-son-nhat-airport": {
+                "x": 496,
+                "y": 488,
+                "anchor": "start"
+              },
+              "grandma-lu-saigon-centre": {
+                "x": 1204,
+                "y": 488,
+                "anchor": "end"
+              }
+            },
+            "transport": [
+              {
+                "items": [
+                  "d6-sgn-transfer"
+                ],
+                "x": 850,
+                "y": 520
+              }
+            ]
+          },
+          "9": {
+            "places": [
+              "grandma-lu-saigon-centre",
+              "tan-son-nhat-airport"
+            ],
+            "labels": {
+              "grandma-lu-saigon-centre": {
+                "x": 1204,
+                "y": 488,
+                "anchor": "end"
+              },
+              "tan-son-nhat-airport": {
+                "x": 496,
+                "y": 488,
+                "anchor": "start"
+              }
+            },
+            "transport": [
+              {
+                "items": [
+                  "d9-sgn-transfer"
+                ],
+                "x": 850,
+                "y": 520
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
