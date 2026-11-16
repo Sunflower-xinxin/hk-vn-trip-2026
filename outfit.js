@@ -3,8 +3,6 @@
   let trip = null;
   let outfits = {};
   let dialog = null;
-  let masonryResizeObserver = null;
-  let masonryFrame = 0;
   const root = () => document.querySelector("#outfit-root");
   const esc = (value = "") => String(value).replace(/[&<>"']/g, (char) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
@@ -52,41 +50,6 @@
     });
   }
 
-  function updateMasonry() {
-    masonryFrame = 0;
-    const grid = root()?.querySelector(".outfit-grid");
-    if (!grid) return;
-    const style = getComputedStyle(grid);
-    const row = Number.parseFloat(style.gridAutoRows) || 2;
-    const gap = Number.parseFloat(style.rowGap) || 12;
-    grid.querySelectorAll(".outfit-card").forEach((card) => {
-      card.style.gridRowEnd = "auto";
-      const height = card.getBoundingClientRect().height;
-      card.style.gridRowEnd = `span ${Math.max(1, Math.ceil((height + gap) / (row + gap)))}`;
-    });
-  }
-
-  function scheduleMasonry() {
-    if (masonryFrame) cancelAnimationFrame(masonryFrame);
-    masonryFrame = requestAnimationFrame(updateMasonry);
-  }
-
-  function setupMasonry() {
-    masonryResizeObserver?.disconnect();
-    masonryResizeObserver = null;
-    const grid = root()?.querySelector(".outfit-grid");
-    if (!grid) return;
-    grid.querySelectorAll("img").forEach((image) => {
-      if (!image.complete) image.addEventListener("load", scheduleMasonry, { once: true });
-    });
-    if ("ResizeObserver" in window) {
-      masonryResizeObserver = new ResizeObserver(scheduleMasonry);
-      masonryResizeObserver.observe(grid);
-      grid.querySelectorAll(".outfit-card").forEach((card) => masonryResizeObserver.observe(card));
-    }
-    scheduleMasonry();
-  }
-
   function formatDate(date) {
     const [, month, day] = date.split("-");
     return `${Number(month)}月${Number(day)}日`;
@@ -122,7 +85,6 @@
         }).join("")}
       </section>
     `;
-    setupMasonry();
   }
 
   function openEditor(date) {
