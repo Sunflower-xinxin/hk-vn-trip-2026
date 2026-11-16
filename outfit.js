@@ -3,6 +3,8 @@
   let trip = null;
   let outfits = {};
   let dialog = null;
+  let masonryResizeObserver = null;
+  let masonryFrame = 0;
   const root = () => document.querySelector("#outfit-root");
   const esc = (value = "") => String(value).replace(/[&<>"']/g, (char) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
@@ -43,19 +45,46 @@
       reader.onload = () => {
         const image = new Image();
         image.onerror = () => reject(new Error("图片格式无法识别"));
-        image.onload = () => {
-          const limit = 1400;
-          const scale = Math.min(1, limit / Math.max(image.width, image.height));
-          const canvas = document.createElement("canvas");
-          canvas.width = Math.max(1, Math.round(image.width * scale));
-          canvas.height = Math.max(1, Math.round(image.height * scale));
-          canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
-          resolve(canvas.toDataURL("image/jpeg", 0.82));
-        };
+        image.onload = () => resolve(String(reader.result));
         image.src = String(reader.result);
       };
       reader.readAsDataURL(file);
     });
+  }
+
+  function updateMasonry() {
+    masonryFrame = 0;
+    const grid = root()?.querySelector(".outfit-grid");
+    if (!grid) return;
+    const style = getComputedStyle(grid);
+    const row = Number.parseFloat(style.gridAutoRows) || 2;
+    const gap = Number.parseFloat(style.rowGap) || 12;
+    grid.querySelectorAll(".outfit-card").forEach((card) => {
+      card.style.gridRowEnd = "auto";
+      const height = card.getBoundingClientRect().height;
+      card.style.gridRowEnd = `span ${Math.max(1, Math.ceil((height + gap) / (row + gap)))}`;
+    });
+  }
+
+  function scheduleMasonry() {
+    if (masonryFrame) cancelAnimationFrame(masonryFrame);
+    masonryFrame = requestAnimationFrame(updateMasonry);
+  }
+
+  function setupMasonry() {
+    masonryResizeObserver?.disconnect();
+    masonryResizeObserver = null;
+    const grid = root()?.querySelector(".outfit-grid");
+    if (!grid) return;
+    grid.querySelectorAll("img").forEach((image) => {
+      if (!image.complete) image.addEventListener("load", scheduleMasonry, { once: true });
+    });
+    if ("ResizeObserver" in window) {
+      masonryResizeObserver = new ResizeObserver(scheduleMasonry);
+      masonryResizeObserver.observe(grid);
+      grid.querySelectorAll(".outfit-card").forEach((card) => masonryResizeObserver.observe(card));
+    }
+    scheduleMasonry();
   }
 
   function formatDate(date) {
@@ -78,7 +107,7 @@
           return `
             <article class="outfit-card">
               <header><span>DAY ${String(day.day).padStart(2, "0")}</span><strong>${formatDate(day.date)}</strong></header>
-              ${outfit.imageData ? `<img src="${outfit.imageData}" alt="${esc(day.date)} 服装搭配">` : '<div class="outfit-placeholder" aria-hidden="true">LOOK</div>'}
+              ${outfit.imageData ? `<button class="outfit-card__image-button" type="button" data-image-preview aria-label="全屏查看 ${esc(day.date)} 服装搭配"><img src="${outfit.imageData}" alt="${esc(day.date)} 服装搭配"></button>` : '<div class="outfit-placeholder" aria-hidden="true">LOOK</div>'}
               <div class="outfit-card-body">
                 <h2>${esc(day.title)}</h2>
                 <p>${outfit.text ? esc(outfit.text) : "尚未添加当天穿搭"}</p>
@@ -93,6 +122,7 @@
         }).join("")}
       </section>
     `;
+    setupMasonry();
   }
 
   function openEditor(date) {
@@ -109,7 +139,7 @@
         <label><span>参考网址 <small>选填</small></span><input name="url" type="url" value="${esc(outfit.url || "")}" placeholder="https://..."></label>
         <label class="content-editor-file"><span>上传搭配图片 <small>选填</small></span><input name="image" type="file" accept="image/*"></label>
         ${outfit.imageData ? `<div class="content-editor-image-preview outfit-image-preview" data-outfit-image-preview>
-          <img src="${outfit.imageData}" alt="当前服装图片">
+          <img src="${outfit.imageData}" alt="当前服装图片" data-image-preview tabindex="0" role="button" aria-label="全屏查看当前服装图片">
           <input name="removeImage" type="hidden" value="">
           <div class="outfit-image-delete-actions" role="group" aria-label="当前图片操作">
             <button class="outfit-image-delete-button is-danger" type="button" data-outfit-remove-image>删除图片</button>

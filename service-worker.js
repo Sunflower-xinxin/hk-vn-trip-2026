@@ -1,4 +1,4 @@
-const CACHE_NAME = "hk-vn-travel-v3";
+const CACHE_NAME = "hk-vn-travel-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "./styles.css?v=20261104-4",
   "./ledger.css?v=20261104-2",
   "./apple-polish.css?v=20261105-8",
+  "./interface-system.css?v=20261116-2",
   "./initial-local-state.js?v=20261105-1",
   "./runtime-storage.js?v=20260910-2",
   "./overview-map.js?v=20260910-2",
@@ -14,7 +15,8 @@ const APP_SHELL = [
   "./app.js?v=20261105-3",
   "./trip-editor.js?v=20261105-3",
   "./ui-stress.js?v=20261104-1",
-  "./outfit.js?v=20261105-2",
+  "./image-preview.js?v=20261116-1",
+  "./outfit.js?v=20261116-1",
   "./ticket-pdf-preview.js?v=20260910-2",
   "./ledger.js?v=20261104-3",
   "./apple-date-picker.js?v=20261105-1",

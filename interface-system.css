@@ -1,0 +1,298 @@
+/* Shared interface contracts for form controls, outfit masonry and image preview. */
+:root {
+  --travel-control-font-size: 14px;
+  --travel-control-font-weight: 450;
+  --travel-control-line-height: 1.45;
+  --travel-control-letter-spacing: -.006em;
+  --travel-control-min-height: 46px;
+  --travel-control-padding-inline: 13px;
+  --travel-control-padding-block: 11px;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+body input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="color"]):not(.ledger-amount-input),
+body select,
+body textarea,
+.apple-date-field__trigger,
+.content-editor-duration-trigger {
+  font-family: inherit;
+  font-size: var(--travel-control-font-size);
+  font-weight: var(--travel-control-font-weight);
+  line-height: var(--travel-control-line-height);
+  letter-spacing: var(--travel-control-letter-spacing);
+}
+
+body input::placeholder,
+body textarea::placeholder {
+  font: inherit;
+  letter-spacing: inherit;
+  opacity: .62;
+}
+
+body select option { font: inherit; }
+
+.content-editor-form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="color"]),
+.content-editor-form select,
+.content-editor-form textarea,
+#todo-input,
+.ledger-input,
+.ledger-select {
+  min-height: var(--travel-control-min-height);
+  box-sizing: border-box;
+  padding-inline: var(--travel-control-padding-inline);
+  font-size: var(--travel-control-font-size);
+  font-weight: var(--travel-control-font-weight);
+  line-height: var(--travel-control-line-height);
+  letter-spacing: var(--travel-control-letter-spacing);
+}
+
+.ledger-note-field .ledger-input,
+.ledger-date-field .ledger-input,
+.ledger-member-edit-row .ledger-input,
+.ledger-add-member-form .ledger-input {
+  min-height: var(--travel-control-min-height);
+  padding-inline: var(--travel-control-padding-inline);
+  font-size: var(--travel-control-font-size);
+  font-weight: var(--travel-control-font-weight);
+  line-height: var(--travel-control-line-height);
+  letter-spacing: var(--travel-control-letter-spacing);
+}
+
+.ledger-currency-search .ledger-input {
+  font-size: var(--travel-control-font-size);
+  font-weight: var(--travel-control-font-weight);
+  line-height: var(--travel-control-line-height);
+  letter-spacing: var(--travel-control-letter-spacing);
+}
+
+.content-editor-form textarea { padding-block: var(--travel-control-padding-block); }
+
+.content-editor-file input[type="file"] {
+  font-family: inherit;
+  font-size: var(--travel-control-font-size);
+  font-weight: var(--travel-control-font-weight);
+  line-height: var(--travel-control-line-height);
+  letter-spacing: var(--travel-control-letter-spacing);
+}
+
+body .ledger-field-amount .ledger-amount-input {
+  font-size: 24px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -.035em;
+}
+
+/* Original-ratio clothing photos in a chronological two-column masonry. */
+.outfit-view .outfit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 2px;
+  align-items: start;
+  column-gap: 14px;
+  row-gap: 12px;
+}
+
+.outfit-view .outfit-card {
+  width: 100%;
+  min-width: 0;
+  align-self: start;
+}
+
+.outfit-card__image-button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.outfit-card__image-button img,
+#outfit-editor-dialog .outfit-image-preview img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  display: block;
+  object-fit: contain;
+  aspect-ratio: auto;
+}
+
+#outfit-editor-dialog .outfit-image-preview img[data-image-preview] { cursor: zoom-in; }
+.outfit-view .outfit-placeholder { aspect-ratio: 4 / 3; }
+.outfit-view .outfit-actions { flex-wrap: wrap; }
+
+/* Reusable full-resolution image viewer. */
+body.is-previewing-image { overflow: hidden; }
+
+.image-preview-dialog {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  color: #fffdf5;
+  background: #243c30;
+}
+
+.image-preview-dialog::backdrop { background: rgba(27, 32, 28, .72); }
+
+.image-preview-toolbar {
+  position: absolute;
+  z-index: 3;
+  top: max(12px, env(safe-area-inset-top));
+  left: max(12px, env(safe-area-inset-left));
+  right: max(12px, env(safe-area-inset-right));
+  min-height: 44px;
+  padding: 6px 7px 6px 14px;
+  border: 1px solid rgba(255, 253, 245, .14);
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(36, 60, 48, .78);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.image-preview-toolbar > span {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 620;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image-preview-controls { display: flex; align-items: center; gap: 5px; }
+
+.image-preview-controls button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  color: #fffdf5;
+  background: rgba(255, 253, 245, .12);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.image-preview-controls button[data-image-preview-reset] {
+  min-width: 56px;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.image-preview-controls .image-preview-close {
+  margin-left: 3px;
+  color: #2f3f33;
+  background: #f0d889;
+  font-size: 20px;
+}
+
+.image-preview-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+
+.image-preview-stage:active { cursor: grabbing; }
+
+.image-preview-stage img {
+  max-width: min(94vw, 1600px);
+  max-height: 82dvh;
+  display: block;
+  object-fit: contain;
+  transform-origin: center;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.image-preview-stage img[hidden],
+.image-preview-status[hidden] { display: none; }
+
+.image-preview-status {
+  max-width: min(80vw, 360px);
+  margin: 0;
+  padding: 13px 16px;
+  border-radius: 15px;
+  color: #3e4f41;
+  background: #fffcef;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.image-preview-help {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: rgba(255, 253, 245, .72);
+  background: rgba(36, 60, 48, .64);
+  font-size: 9px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .outfit-view .outfit-grid {
+    padding-inline: 12px;
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+  .outfit-view .outfit-card > header { padding-inline: 11px; }
+  .outfit-view .outfit-card-body { padding: 13px 11px; }
+  .image-preview-toolbar { left: auto; justify-content: flex-end; }
+  .image-preview-toolbar > span { display: none; }
+  .image-preview-help { font-size: 8px; }
+}
+
+@media (pointer: coarse) {
+  input,
+  textarea,
+  select,
+  .content-editor-file input[type="file"] { font-size: 16px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-preview-stage img { will-change: auto; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .image-preview-toolbar {
+    background: #243c30;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
