@@ -20,9 +20,11 @@
   function save() {
     try {
       localStorage.setItem(storageKey(), JSON.stringify(outfits));
+      return true;
     } catch (error) {
       console.error("Could not save outfit", error);
-      alert("本地存储空间不足，请换一张更小的图片后重试。");
+      alert("搭配信息保存失败，请检查浏览器可用空间后重试。");
+      return false;
     }
   }
 
@@ -35,19 +37,32 @@
     }
   }
 
-  function readImage(file) {
-    if (!file) return Promise.resolve("");
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onerror = () => reject(new Error("图片读取失败"));
-      reader.onload = () => {
-        const image = new Image();
-        image.onerror = () => reject(new Error("图片格式无法识别"));
-        image.onload = () => resolve(String(reader.result));
-        image.src = String(reader.result);
-      };
-      reader.readAsDataURL(file);
-    });
+  const hasImage = (outfit) => Boolean(outfit?.imageData || outfit?.imageRef);
+
+  function imageMarkup(outfit, day) {
+    if (!hasImage(outfit)) return '<div class="outfit-placeholder" aria-hidden="true">LOOK</div>';
+    const legacySource = outfit.imageData || "";
+    return `<button class="outfit-card__image-button" type="button" data-image-preview aria-label="全屏查看 ${esc(day.date)} 服装搭配">
+      <img ${legacySource ? `src="${legacySource}"` : "hidden"} data-outfit-image-date="${esc(day.date)}" alt="${esc(day.date)} 服装搭配">
+    </button>`;
+  }
+
+  async function hydrateImages() {
+    if (!window.OutfitImageStore) return;
+    const images = [...document.querySelectorAll("[data-outfit-image-date]")];
+    await Promise.all(images.map(async (image) => {
+      const outfit = outfits[image.dataset.outfitImageDate] || {};
+      if (!outfit.imageRef) return;
+      try {
+        const source = await window.OutfitImageStore.resolve(outfit.imageRef);
+        if (!source || !image.isConnected) return;
+        image.src = source;
+        image.hidden = false;
+      } catch (error) {
+        console.error("Could not load outfit image", error);
+        image.closest("button")?.setAttribute("aria-label", "图片暂时无法载入，请重新打开页面后重试");
+      }
+    }));
   }
 
   function formatDate(date) {
@@ -57,6 +72,7 @@
 
   function render() {
     if (!trip || !root()) return;
+    window.OutfitImageStore?.releaseObjectUrls?.();
     root().innerHTML = `
       <section class="outfit-hero">
         <p>DAILY OUTFITS</p>
@@ -70,14 +86,14 @@
           return `
             <article class="outfit-card">
               <header><span>DAY ${String(day.day).padStart(2, "0")}</span><strong>${formatDate(day.date)}</strong></header>
-              ${outfit.imageData ? `<button class="outfit-card__image-button" type="button" data-image-preview aria-label="全屏查看 ${esc(day.date)} 服装搭配"><img src="${outfit.imageData}" alt="${esc(day.date)} 服装搭配"></button>` : '<div class="outfit-placeholder" aria-hidden="true">LOOK</div>'}
+              ${imageMarkup(outfit, day)}
               <div class="outfit-card-body">
                 <h2>${esc(day.title)}</h2>
                 <p>${outfit.text ? esc(outfit.text) : "尚未添加当天穿搭"}</p>
                 ${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">打开穿搭参考 ↗</a>` : ""}
                 <div class="outfit-actions">
-                  ${outfit.text || outfit.imageData || outfit.url ? `<button class="is-danger" type="button" data-outfit-clear="${day.date}">清空</button>` : ""}
-                  <button class="content-editor-primary" type="button" data-outfit-edit="${day.date}">${outfit.text || outfit.imageData || outfit.url ? "修改搭配" : "＋ 添加搭配"}</button>
+                  ${outfit.text || hasImage(outfit) || outfit.url ? `<button class="is-danger" type="button" data-outfit-clear="${day.date}">清空</button>` : ""}
+                  <button class="content-editor-primary" type="button" data-outfit-edit="${day.date}">${outfit.text || hasImage(outfit) || outfit.url ? "修改搭配" : "＋ 添加搭配"}</button>
                 </div>
               </div>
             </article>
@@ -85,6 +101,7 @@
         }).join("")}
       </section>
     `;
+    void hydrateImages();
   }
 
   function openEditor(date) {
@@ -99,9 +116,9 @@
         <p class="outfit-form-day">${esc(day?.title || "")}</p>
         <label><span>搭配说明 <small>选填</small></span><textarea name="text" rows="5" placeholder="例如：薄外套、短袖、舒适运动鞋">${esc(outfit.text || "")}</textarea></label>
         <label><span>参考网址 <small>选填</small></span><input name="url" type="url" value="${esc(outfit.url || "")}" placeholder="https://..."></label>
-        <label class="content-editor-file"><span>上传搭配图片 <small>选填</small></span><input name="image" type="file" accept="image/*"></label>
-        ${outfit.imageData ? `<div class="content-editor-image-preview outfit-image-preview" data-outfit-image-preview>
-          <img src="${outfit.imageData}" alt="当前服装图片" data-image-preview tabindex="0" role="button" aria-label="全屏查看当前服装图片">
+        <label class="content-editor-file"><span>上传搭配图片 <small>选填 · 单张最高 1GB</small></span><input name="image" type="file" accept="image/*"></label>
+        ${hasImage(outfit) ? `<div class="content-editor-image-preview outfit-image-preview" data-outfit-image-preview>
+          <img ${outfit.imageData ? `src="${outfit.imageData}"` : "hidden"} data-outfit-editor-image="${esc(date)}" alt="当前服装图片" data-image-preview tabindex="0" role="button" aria-label="全屏查看当前服装图片">
           <input name="removeImage" type="hidden" value="">
           <div class="outfit-image-delete-actions" role="group" aria-label="当前图片操作">
             <button class="outfit-image-delete-button is-danger" type="button" data-outfit-remove-image>删除图片</button>
@@ -117,6 +134,14 @@
     `;
     if (typeof dialog.showModal === "function") dialog.showModal();
     else dialog.setAttribute("open", "");
+    const editorImage = dialog.querySelector("[data-outfit-editor-image]");
+    if (editorImage && outfit.imageRef) {
+      void window.OutfitImageStore?.resolve(outfit.imageRef).then((source) => {
+        if (!source || !editorImage.isConnected) return;
+        editorImage.src = source;
+        editorImage.hidden = false;
+      }).catch((error) => console.error("Could not load editor image", error));
+    }
   }
 
   function closeEditor() {
@@ -131,14 +156,44 @@
     const next = {
       text: String(values.get("text") || "").trim(),
       url: String(values.get("url") || "").trim(),
-      imageData: values.get("removeImage") ? "" : current.imageData || ""
+      imageData: values.get("removeImage") ? "" : current.imageData || "",
+      imageRef: values.get("removeImage") ? null : current.imageRef || null
     };
     const file = form.elements.image?.files?.[0];
-    if (file) next.imageData = await readImage(file);
-    outfits[date] = next;
-    save();
-    closeEditor();
-    render();
+    const submitButton = form.querySelector('[type="submit"]');
+    const previousLabel = submitButton?.textContent || "保存搭配";
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = file ? "正在保存图片…" : "正在保存…";
+    }
+    let newReference = null;
+    try {
+      if (file) {
+        if (!window.OutfitImageStore) throw new Error("图片存储组件尚未载入，请刷新页面后重试。");
+        newReference = await window.OutfitImageStore.save(file, {
+          tripId: trip?.metadata?.tripId || "default-trip",
+          date
+        });
+        next.imageRef = newReference;
+        next.imageData = "";
+      }
+      outfits[date] = next;
+      if (!save()) throw new Error("搭配信息未能写入浏览器");
+      if ((file || values.get("removeImage")) && current.imageRef) {
+        await window.OutfitImageStore?.remove(current.imageRef).catch((error) => console.warn("Could not remove replaced image", error));
+      }
+      closeEditor();
+      render();
+    } catch (error) {
+      if (newReference) await window.OutfitImageStore?.remove(newReference).catch(() => {});
+      outfits[date] = current;
+      alert(error?.message || "图片保存失败，请稍后重试。");
+    } finally {
+      if (submitButton?.isConnected) {
+        submitButton.disabled = false;
+        submitButton.textContent = previousLabel;
+      }
+    }
   }
 
   function setup() {
@@ -178,8 +233,10 @@
       if (button.matches("[data-outfit-close]")) closeEditor();
       if (button.dataset.outfitEdit) openEditor(button.dataset.outfitEdit);
       if (button.dataset.outfitClear && confirm("清空这一天的服装搭配？")) {
+        const removed = outfits[button.dataset.outfitClear];
         delete outfits[button.dataset.outfitClear];
         save();
+        if (removed?.imageRef) void window.OutfitImageStore?.remove(removed.imageRef).catch((error) => console.warn("Could not remove cleared image", error));
         render();
       }
     });
